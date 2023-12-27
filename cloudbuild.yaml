@@ -1,0 +1,18 @@
+steps:
+  # Build the container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "gcr.io/$PROJECT_ID/gcpdemo", "."]
+
+  # Push container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "gcr.io/$PROJECT_ID/gcpdemo"]
+
+  # Deploy container image to GKE
+# - name: "gcr.io/cloud-builders/gke-deploy"
+#   args:
+#   - run
+#   - --filename=gke.yaml
+#   - --image=gcr.io/$PROJECT_ID/gcpdemo
+#   - --location=us-central1-c
+#   - --cluster=gcp-poc-demo
+#   - --namespace=gcp-poc-demo

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gcp-poc-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gcp-poc-demo
+  template:
+    metadata:
+      labels:
+        app: gcp-poc-demo
+    spec:
+      containers:
+      - name: gcp-poc-demo-pod
+        image: 
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PORT
+            value: "5000"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gcp-poc-demo-service
+  namespace: gcp-poc-demo
+  labels:
+    app.kubernetes.io/managed-by: gcp-cloud-build-deploy
+spec:
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  selector:
+    app: gcp-poc-demo
+  type: LoadBalancer
