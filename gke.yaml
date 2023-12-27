@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: gcp-poc-demo-pod
-        image: us-central1-docker.pkg.dev/$PROJECT_ID/gcp-poc-demo-ar:latest
+        image: gcr.io/cogit-291920/gcpdemo:latest
         ports:
         - containerPort: 5000
         env:
